@@ -1,3 +1,15 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+<P> Hello you are on the {{page}} </P>
+
+{% if number > 10 %}
+<p> Number is greater than 10 </p>
+{% else %}
+<p> Number is less than 10 </p>
+{% endif %}
+
 <html>
     <body>
     {% if name %}
@@ -7,3 +19,5 @@
     {% endif %}
     </body>
 </html>
+
+{% endblock content %}

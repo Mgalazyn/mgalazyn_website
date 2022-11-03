@@ -5,5 +5,12 @@ from django.http import HttpResponse
 
 
 def first_words(request):
-    return render(request, 'hello.html', {'name': 'Marcin\'s web'})
+    page = 'project'
+    number = 9
+    context = {'name': 'Marcin\'s web', 'page': page, 'number': number}
+    return render(request, 'hello.html', context)
+
+
+def project(request):
+    return render(request, 'single_project.html')
 
