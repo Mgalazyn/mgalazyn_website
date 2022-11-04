@@ -14,3 +14,8 @@ def first_words(request):
 def project(request):
     return render(request, 'single_project.html')
 
+
+def new_func(request):
+    return render(request, 'do smth')
+
+
