@@ -2,7 +2,13 @@
 
 {% block content %}
 
-{{message}}
+<h1>{{project.title}}</h1>
+<hr>
+{% for tag in tags %}
+    <span style="border:1px solid grey"> {{tag}} </span>
+{% endfor %}
+<br>
+<p>{{project.description}}</p>
 
 <h1> Project Template </h1>
 

@@ -1,21 +1,18 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from .models import Project
 # Create your views here.
 # request handler
 
 
 def first_words(request):
-    page = 'project'
-    number = 9
-    context = {'name': 'Marcin\'s web', 'page': page, 'number': number}
+    context = {'name': 'Marcin\'s web'}
     return render(request, 'hello.html', context)
 
 
 def project(request):
-    return render(request, 'single_project.html')
-
-
-def new_func(request):
-    return render(request, 'do smth')
-
+    # PyCHARM PROBLEM to show objects from class need to resolve
+    projects = Project.objects.all()
+    tags = projects.tags.all()
+    contex = {'projects': projects, 'tags': tags}
+    return render(request, 'single_project.html', contex)
 
