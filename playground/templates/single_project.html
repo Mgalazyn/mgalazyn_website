@@ -2,14 +2,33 @@
 
 {% block content %}
 
-<h1>{{project.title}}</h1>
 <hr>
-{% for tag in tags %}
-    <span style="border:1px solid grey"> {{tag}} </span>
-{% endfor %}
+
+<h1> Projects </h1>
+<table>
+    <tr>
+        <th>ID</th> 
+        <th>Project</th> 
+        <th>Positvie Votes</th> 
+        <th>Votes</th>
+        <th></th>
+    </tr> 
+    {% for project in projects %}
+        <tr>
+            <td>{{project.id}} </td>
+            <td>{{project.title}} </td>
+            <td>{{project.votes_ratio}}% </td>
+            <td>{{project.votes_total}} </td>
+            <td>{{project.created}} </td>
+        </tr>
+    {% endfor %}
+</table>
+
+{% comment %} 
+{% for tag in project.tags.all %}
+<span style="border:1px solid grey"> {{project.tags.all}} </span>
+{% endfor %} {% endcomment %}
 <br>
 <p>{{project.description}}</p>
-
-<h1> Project Template </h1>
 
 {% endblock content %}

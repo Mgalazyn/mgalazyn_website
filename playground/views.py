@@ -10,9 +10,7 @@ def first_words(request):
 
 
 def project(request):
-    # PyCHARM PROBLEM to show objects from class need to resolve
     projects = Project.objects.all()
-    tags = projects.tags.all()
-    contex = {'projects': projects, 'tags': tags}
+    contex = {'projects': projects}
     return render(request, 'single_project.html', contex)
 

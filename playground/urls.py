@@ -4,6 +4,6 @@ from . import views
 
 #  URLconf
 urlpatterns = [
-    path('playground', views.project, name="project"),
-    path('hi/', views.first_words)
+    path('playground/project', views.project, name="project"),
+    path('playground', views.first_words)
 ]
