@@ -18,6 +18,8 @@ from django.urls import path, include
 import debug_toolbar
 
 
+
+
 urlpatterns = [
     path("admin/", admin.site.urls),
     path('', include('playground.urls')),
