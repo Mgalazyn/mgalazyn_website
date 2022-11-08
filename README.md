@@ -6,3 +6,5 @@ First website about myself, in Python, Django. First trying to configurate admin
 creating tables, changin html
 
 creating CRUD, adding queries 
+
+making css of ws, adding images
