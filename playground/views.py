@@ -24,6 +24,7 @@ def create_project(request):
         if form.is_valid():
             form.save()
             return redirect('main')
+            #print('cos')
     contex = {'form': form}
     return render(request, 'project_form.html', contex)
 
