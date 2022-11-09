@@ -4,16 +4,16 @@ from .forms import ProjectForm
 # Create your views here.
 # request handler
 
+def project(request, pk):
+    projectObj = Project.objects.get(id=pk)
+    contex = {'project': projectObj}
+    return render(request, 'single_project.html', contex)
 
-def main(request):
-    context = {'name': 'Projects'}
-    return render(request, 'main.html', context)
 
-
-def project(request):
+def projects(request):
     projects = Project.objects.all()
     contex = {'projects': projects}
-    return render(request, 'single_project.html', contex)
+    return render(request, 'projects.html', contex)
 
 
 def create_project(request):
@@ -24,7 +24,6 @@ def create_project(request):
         if form.is_valid():
             form.save()
             return redirect('main')
-            #print('cos')
     contex = {'form': form}
     return render(request, 'project_form.html', contex)
 

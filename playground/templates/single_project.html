@@ -1,31 +1,13 @@
 {% extends 'main.html' %}
+
 {% block content %}
-
-<img style= "max-width: 500px;" src="{{ playground.default.jpg}}"
-
+<h1>{{project.title}} </h1>
 <hr>
-<h1> Hi, My name is Marcin and thats my projects</h1>
-<h2> Projects </h2>
-<table>
-    <tr>
-        <th>Project</th> 
-        <th>Positvie Votes</th> 
-        <th>Votes</th>
-        <th></th>
-    </tr>  
-    {% for project in projects %}
-    <tr>
-        <td>{{project.title}} </td>
-        <td>{{project.votes_ratio}}% </td>
-        <td>{{project.votes_total}} </td>
-        <td>{{project.created}} </td>
-	    <td><a href="{% url 'update-project' project.id %}">Edit</a></td>
-        <td><a href="{% url 'delete-project' project.id %}">Delete</a></td>
-    </tr>
-    {% endfor %}
-</table>
-
+{% for tag in project.tags.all %}
+<span style="border:1px solid grey">{{tags}}</span>
+{% endfor %}
+<hr>
 <br>
-<p>{{project.description}}</p>
+<p>{{project.description}} </p>
 
-{% endblock content %}
+{% endblock %}
