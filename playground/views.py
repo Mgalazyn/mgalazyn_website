@@ -5,8 +5,8 @@ from .forms import ProjectForm
 # request handler
 
 def project(request, pk):
-    projectObj = Project.objects.get(id=pk)
-    contex = {'project': projectObj}
+    project = Project.objects.get(id=pk)
+    contex = {'project': project}
     return render(request, 'single_project.html', contex)
 
 
