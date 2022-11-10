@@ -8,3 +8,5 @@ creating tables, changin html
 creating CRUD, adding queries 
 
 making css of ws, adding images
+
+Refactor for CRUD
