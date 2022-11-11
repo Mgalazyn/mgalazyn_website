@@ -1,5 +1,7 @@
-from django.db import models
 import uuid
+
+from django.db import models
+
 # Create your models here.
 
 
@@ -40,4 +42,12 @@ class Tag(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Thing(models.Model):
+    t_name = models.TextField(null=True, blank=True)
+    s_name = models.TextField(null=True, blank=True)
+
+    def __str__(self):
+        return self.t_name + self.s_name
 
