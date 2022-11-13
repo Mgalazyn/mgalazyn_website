@@ -49,5 +49,7 @@ class Thing(models.Model):
     s_name = models.TextField(null=True, blank=True)
 
     def __str__(self):
+        print('smth')
         return self.t_name + self.s_name
+
 
