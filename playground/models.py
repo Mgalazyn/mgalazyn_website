@@ -44,12 +44,9 @@ class Tag(models.Model):
         return self.name
 
 
-class Thing(models.Model):
-    t_name = models.TextField(null=True, blank=True)
-    s_name = models.TextField(null=True, blank=True)
+class New(models.Model):
+    name = models.TextField(max_length=200)
 
-    def __str__(self):
-        print('smth')
-        return self.t_name + self.s_name
-
-
+    def __str__(self) -> str:
+        return self.name
+        
