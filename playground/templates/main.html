@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 {% load static %}
+{% include 'navbar.html' %}
 <html>
 <head>
     <meta charset="UTF-8" />
@@ -19,7 +20,7 @@
 </head>
 <body>
 
-{% include 'navbar.html' %}
+
 
 {% block content %}
 <table>
@@ -43,8 +44,6 @@
 </table>
 
 {% endblock content %}
-
-<p> FOOTER</p>
 
 </body>
 </html>
