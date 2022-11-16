@@ -1,8 +1,9 @@
 {% load static %}
 
 <header class="header">
-    <div class="container container--narrow">
+    <div class="container container-fluid">
       <a href="{% url 'profiles' %}" class="header__logo">
+        {% comment %} <link rel="stylesheet" href="navigation_bar.css"> {% endcomment %}
         <img src="{% static 'images/python_django.png' %}"
       </a>
       <nav class="header__nav">
@@ -20,5 +21,5 @@
         </ul>
       </nav>
     </div>
-  </header>
+</header>
 
