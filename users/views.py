@@ -10,5 +10,9 @@ def profiles(request):
 
 def userprofile(request, pk):
     profile = Profile.objects.get(id=pk)
-    contex = {'profile': profile}
+
+    topskill = profile.skill_set.exclude(description="")
+    otherskills = profile.skill_set.filter(description="")
+
+    contex = {'profile': profile, 'topskill': topskill, 'otherskills': otherskills}
     return render(request, 'users/user-profile.html', contex)
