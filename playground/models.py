@@ -2,6 +2,7 @@ import uuid
 from users.models import Profile
 from django.db import models
 
+
 # Create your models here.
 
 

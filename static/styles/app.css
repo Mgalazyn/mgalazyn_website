@@ -263,7 +263,10 @@ img {
 ========================*/
 
 .devlist {
-  margin-top: 8rem;
+  margin-top: 15rem;
+  gap: 20px;
+  border: 20px;
+  padding: 5px;
 }
 
 .devlist .grid {
@@ -515,6 +518,12 @@ img {
   object-fit: cover;
   object-position: top center;
 }
+
+img {
+  width: 450px;
+  height: auto;
+}
+
 
 .project__title {
   font-size: 2rem;
