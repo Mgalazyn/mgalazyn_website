@@ -10,3 +10,4 @@ creating CRUD, adding queries
 making css of ws, adding images
 
 Refactor for CRUD
+Working at another laptop 19-11-22, iwll commit in next dazs (making more signals and login service)
