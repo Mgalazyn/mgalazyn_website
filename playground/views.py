@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import Project
 from .forms import ProjectForm
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 # request handler
 
@@ -16,6 +17,7 @@ def projects(request):
     return render(request, 'projects.html', contex)
 
 
+@login_required(login_url="login")
 def create_project(request):
     form = ProjectForm()
 
@@ -28,6 +30,7 @@ def create_project(request):
     return render(request, 'project_form.html', contex)
 
 
+@login_required(login_url="login")
 def update_project(request, pk):
     projectt = Project.objects.get(id=pk)
     form = ProjectForm(instance=projectt)
@@ -41,6 +44,7 @@ def update_project(request, pk):
     return render(request, 'project_form.html', contex)
 
 
+@login_required(login_url="login")
 def delete_project(request, pk):
     project = Project.objects.get(id=pk)
 

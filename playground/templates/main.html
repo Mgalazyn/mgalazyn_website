@@ -19,32 +19,19 @@
   
     <title>Marcin Galazyn - Python/Django developer!</title>
 </head>
+
 <body>
+    {% if messages %}
+    <ul class="messages">
+        {% for message in messages %}
+        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+    </ul>
+    {% endif %}
 
+    {% block content %}
 
-
-{% block content %}
-<table>
-    <tr>
-        <th>Project</th> 
-        <th>Positive Votes in %</th> 
-        <th>Votes</th>
-        <th></th>
-    </tr>  
-    {% for project in Project.objects.all %}
-    <tr>
-        <td>{{project.title}} </td>
-        <td>{{project.vote_ratio}}% </td>
-        <td>{{project.vote_total}} </td>
-        <td>{{project.created}} </td>
-        <td><a href="{% url 'project' project.id %}">View</a></td>
-	    <td><a href="{% url 'update-project' project.id %}">Edit</a></td>
-        <td><a href="{% url 'delete-project' project.id %}">Delete</a></td>
-    </tr>
-    {% endfor %}
-</table>
-
-{% endblock content %}
+    {% endblock content %}
 
 </body>
 </html>
