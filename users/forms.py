@@ -1,7 +1,7 @@
 from django.forms import ModelForm
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile
+from .models import Profile, Skill
 
 
 class CustomUserCreationForm(UserCreationForm):
@@ -13,7 +13,7 @@ class CustomUserCreationForm(UserCreationForm):
         }
     
     def __init__(self, *args, **kwargs):
-        super(CustomUserCreationForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
         self.fields['first_name'].widget.attrs.update({'class':'input', 'placeholder': 'Add first name'})
 
@@ -25,11 +25,6 @@ class CustomUserCreationForm(UserCreationForm):
 
         self.fields['password2'].widget.attrs.update({'class':'input', 'placeholder': 'Confirm password'})
 
-    # def __init__(self, *args, **kwargs):
-    #     super(CustomUserCreationForm, self).__init__(*args, **kwargs)
-
-    #     for name, field in self.fields.items():
-    #         field.widget.atrrs.update({'class': 'input'})
 
 class ProfileForm(ModelForm):
     
@@ -38,3 +33,47 @@ class ProfileForm(ModelForm):
         fields = ['name', 'email', 'username', 'location', 'bio', 
                     'short_intro', 'profile_image', 
                     'social_github', 'social_linkedin', 'social_website']
+        
+    # def __init__(self, *args, **kwargs):
+    #     super().__init__(*args, **kwargs)
+
+        
+    #     for name, field in self.fields.items():
+    #         field.widget.update({'class': 'input'})
+
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs.update({'class':'input'})
+
+        self.fields['email'].widget.attrs.update({'class':'input'})
+
+        self.fields['username'].widget.attrs.update({'class':'input'})
+
+        self.fields['location'].widget.attrs.update({'class':'input'})
+
+        self.fields['short_intro'].widget.attrs.update({'class':'input'})
+
+        self.fields['profile_image'].widget.attrs.update({'class':'input'})
+
+        self.fields['social_github'].widget.attrs.update({'class':'input'})
+
+        self.fields['social_linkedin'].widget.attrs.update({'class':'input'})
+
+        self.fields['social_website'].widget.attrs.update({'class':'input'})
+
+
+class SkillForm(ModelForm):
+
+    class Meta:
+        model = Skill
+        fields = '__all__'
+        exclude = ['owner']
+    
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+
+        self.fields['name'].widget.attrs.update({'class':'input'})
+
+        self.fields['description'].widget.attrs.update({'class': 'input'})
