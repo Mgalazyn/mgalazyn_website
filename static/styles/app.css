@@ -264,13 +264,10 @@ img {
 
 .devlist {
   margin-top: 15rem;
-  gap: 20px;
-  border: 20px;
-  padding: 5px;
 }
 
 .devlist .grid {
-  align-items: stretch;
+  margin: 0 -5px;
 }
 
 .devlist .dev .dev__profile {
@@ -296,6 +293,14 @@ img {
   font-size: 1.35rem;
   line-height: 1.4;
   text-align: justify;
+}
+
+@media screen and (max-width: 600px) {
+  .devlist {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
 }
 
 /*=======================
