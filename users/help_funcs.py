@@ -1,7 +1,6 @@
 from .models import Profile, Skill
 from django.db.models import Q
 
-
 def search_profiles(request):
     search_query = ""
 

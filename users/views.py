@@ -7,6 +7,7 @@ from .models import Profile, Skill
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
 from django.db.models import Q
 from .help_funcs import search_profiles
+from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # Create your views here.
 
 def login_user(request):
@@ -65,6 +66,19 @@ def register_user(request):
 
 def profiles(request):
     profiles, search_query = search_profiles(request)
+    page = request.GET.get('page')
+    results = 6
+    paginator = Paginator(profiles, results)
+
+    try:
+        profiles = paginator.page(page)
+    except PageNotAnInteger:
+        page = 1
+        profiles = paginator.page(page)
+    except EmptyPage:
+        page = paginator.num_pages
+        profiles = paginator.page(page)
+
 
     contex = {'profiles': profiles, 'search_query': search_query}
     return render(request, 'users/profiles.html', contex)
