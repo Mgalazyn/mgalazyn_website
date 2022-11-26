@@ -15,3 +15,4 @@ Working at another laptop 19-11-22, iwll commit in next dazs (making more signal
 sing in/register 
 
 Adding register/login page
+pagination, search bar
