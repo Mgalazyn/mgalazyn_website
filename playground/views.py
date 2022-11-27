@@ -1,7 +1,8 @@
 from django.shortcuts import render, redirect
 from .models import Project, Tag
-from .forms import ProjectForm
+from .forms import ProjectForm, ReviewForm
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 from django.db.models import Q
 from .help_funcs import search_project
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
@@ -10,7 +11,18 @@ from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 
 def project(request, pk):
     project = Project.objects.get(id=pk)
-    contex = {'project': project}
+    form = ReviewForm
+
+    if request.method == 'POST':
+        form = ReviewForm(request.POST)
+        review = form.save(commit=False)
+        review.project = project
+        review.owner = request.user.profile
+        review.save()
+
+        messages.success(request, 'Review added!')
+        
+    contex = {'project': project, 'form': form}
     return render(request, 'single_project.html', contex)
 
 
