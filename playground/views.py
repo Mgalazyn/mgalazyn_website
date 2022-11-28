@@ -20,7 +20,10 @@ def project(request, pk):
         review.owner = request.user.profile
         review.save()
 
+        project.get_vote_count
+
         messages.success(request, 'Review added!')
+        return redirect('view-project', pk=project.id )
         
     contex = {'project': project, 'form': form}
     return render(request, 'single_project.html', contex)

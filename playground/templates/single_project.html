@@ -38,7 +38,9 @@
             <h5 class="project--rating">
               {{project.vote_ratio}}% Positive feedback ({{project.vote_total}} Vote{{project.vote_total|pluralize:"s"}})
             </h5>
-
+            {% if request.user.profile.id in project.reviewers %}
+            <p> You can vote one time for project </p>
+            {% elif request.user.is_authenticated  %}
             <form class="form" action="{% url 'view-project' project.id %}" method="POST">
               {% csrf_token %}
               {% for field in form %}
@@ -49,7 +51,10 @@
               {% endfor %}
               <input class="btn btn--sub btn--lg" type="submit" value="Add review"/>
             </form>
-            
+            {% else %}
+            <a href="{% url 'login' %}?next={{request.path}}">Login to leave review</a>
+            {% endif %}
+
             <div class="commentList">
               {% for review in project.review_set.all %}
               {% if review.body %}

@@ -24,7 +24,7 @@ class ProjectForm(ModelForm):
 class ReviewForm(ModelForm):
     class Meta:
         model = Review
-        fields = ['value', 'body']
+        fields = ['body', 'value']
 
         labels = {
             'value': 'Place your vote',
@@ -38,4 +38,5 @@ class ReviewForm(ModelForm):
         # self.fields['value'].lable = ['Add a comment with you vote']
         
         self.fields['body'].widget.attrs.update({'class':'input', 'placeholder': 'Add comment'})
-        self.fields['value'].widget.attrs.update({'class':'input'})
+        self.fields['value'].widget.attrs.update({'class':'input', 'placeholder': 'Up or down vote'})
+        

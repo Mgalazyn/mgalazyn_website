@@ -1,4 +1,6 @@
 .alert {
+    position: absolute;
+
     display: inline-flex;
     gap: 3rem;
     justify-content: space-between;
