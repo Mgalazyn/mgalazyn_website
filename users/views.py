@@ -4,7 +4,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
 from .models import Profile, Skill, Inbox
-from .forms import CustomUserCreationForm, ProfileForm, SkillForm
+from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
 from django.db.models import Q
 from .help_funcs import search_profiles
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
@@ -177,3 +177,41 @@ def inbox(request):
 
     context = {'messages_inbox': messages_inbox, 'unread': unread}
     return render(request, 'users/inbox.html', context)
+
+
+@login_required(login_url='login')
+def view_massage(request, pk):
+    profile = request.user.profile
+    msg = profile.messages.get(id=pk)
+    if msg.is_read == False:
+        msg.is_read = True
+        msg.save()
+    context = {'message': msg}
+    return render(request, 'users/message.html', context)
+
+
+def create_message(request, pk):
+    recivier = Profile.objects.get(id=pk)
+    form = MessageForm()
+
+    try: 
+        sender = request.user.profile
+    except:
+        sender = None
+
+    if request.method == 'POST':
+        form = MessageForm(request.POST)
+        if form.is_valid():
+            message = form.save(commit=False)
+            message.sender = sender
+            message.recivier = recivier 
+
+            if sender:
+                message.name = sender.name
+                message.email = sender.email 
+
+            message.save()
+            messages.success(request, 'Message sent successfully')
+            return redirect('user-profile', pk=recivier.id)
+    context = {'recivier': recivier, 'form': form}
+    return render(request, 'users/message_form.html', context)
