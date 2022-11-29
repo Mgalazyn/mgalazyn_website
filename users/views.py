@@ -3,7 +3,7 @@ from django.contrib.auth import login, authenticate, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.contrib.auth.models import User
-from .models import Profile, Skill
+from .models import Profile, Skill, Inbox
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm
 from django.db.models import Q
 from .help_funcs import search_profiles
@@ -38,7 +38,7 @@ def login_user(request):
 
 def logout_user(request):
     logout(request)
-    messages.error(request, 'User logout!')
+    messages.info(request, 'User was logged out!')
     return redirect('login')
 
 
@@ -155,7 +155,7 @@ def update_skill(request, pk):
     return render(request, 'users/skill_form.html', context)
 
 
-
+@login_required(login_url='login')
 def delete_skill(request, pk):
     profile = request.user.profile
     skill = profile.skill_set.get(id=pk)
@@ -167,3 +167,13 @@ def delete_skill(request, pk):
 
     context = {'object': skill}
     return render(request, 'users/delete_object.html', context)
+
+
+@login_required(login_url='login')
+def inbox(request):
+    profile = request.user.profile
+    messages_inbox = profile.messages.all()
+    unread = messages_inbox.filter(is_read=False).count()
+
+    context = {'messages_inbox': messages_inbox, 'unread': unread}
+    return render(request, 'users/inbox.html', context)
