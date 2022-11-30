@@ -53,6 +53,8 @@ class ProfileForm(ModelForm):
 
         self.fields['location'].widget.attrs.update({'class':'input'})
 
+        self.fields['bio'].widget.attrs.update({'class':'input'})
+
         self.fields['short_intro'].widget.attrs.update({'class':'input'})
 
         self.fields['profile_image'].widget.attrs.update({'class':'input'})
