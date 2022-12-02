@@ -26,6 +26,7 @@ urlpatterns = [
     path('projects/', include('playground.urls')),
     path('', include('users.urls')),
     path('__debug__/', include(debug_toolbar.urls)),
+    path('api/', include('api.urls')), 
 
     path('reset_password/', auth_views.PasswordResetView.as_view(), name='reset_password'),
     path('reset_password_sent/', auth_views.PasswordResetDoneView.as_view(), name='password_reset_done'),
