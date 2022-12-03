@@ -1,10 +1,11 @@
 from django.http import JsonResponse
 from rest_framework import status
-from rest_framework.decorators import api_view
+from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .serializers import ProjectSerializer
 from playground.models import Project
-
+from api import serializers
+from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
 @api_view(['GET'])
 def get_ways(request):
@@ -21,6 +22,7 @@ def get_ways(request):
 
 
 @api_view(['GET'])
+@permission_classes([IsAuthenticated])
 def get_projects(request):
     projects = Project.objects.all()
     serializer = ProjectSerializer(projects, many=True).data
