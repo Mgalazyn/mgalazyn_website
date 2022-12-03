@@ -16,3 +16,4 @@ sing in/register
 
 Adding register/login page
 pagination, search bar
+jwt and api
