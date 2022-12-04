@@ -22,7 +22,7 @@ def get_ways(request):
 
 
 @api_view(['GET'])
-@permission_classes([IsAuthenticated])
+# @permission_classes([IsAuthenticated])
 def get_projects(request):
     projects = Project.objects.all()
     serializer = ProjectSerializer(projects, many=True).data
@@ -36,3 +36,14 @@ def get_project(request, pk):
     serializer = ProjectSerializer(project, many=False).data
 
     return Response(serializer)
+
+
+@api_view(['POST', 'PUT'])
+@permission_classes([IsAuthenticated])
+def project_vote(request, pk):
+    project = Project.objects.get(id=pk)
+    user = request.user.profile
+    data = request.data
+
+    serializer = ProjectSerializer(project, many=False)
+    return Response(serializer.data)

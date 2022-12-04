@@ -9,7 +9,9 @@ urlpatterns = [
     path('', views.get_ways),
     path('projects/', views.get_projects),
     path('projects/<str:pk>/', views.get_project),
+    path('projects/<str:pk>/vote/', views.project_vote),
 
     path('users/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('users/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+
 ]
