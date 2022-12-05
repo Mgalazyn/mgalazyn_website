@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.decorators import api_view, permission_classes
 from rest_framework.response import Response
 from .serializers import ProjectSerializer
-from playground.models import Project
+from playground.models import Project, Review
 from api import serializers
 from rest_framework.permissions import IsAuthenticated, IsAdminUser
 
@@ -38,12 +38,21 @@ def get_project(request, pk):
     return Response(serializer)
 
 
-@api_view(['POST', 'PUT'])
+@api_view(['POST'])
 @permission_classes([IsAuthenticated])
 def project_vote(request, pk):
     project = Project.objects.get(id=pk)
     user = request.user.profile
     data = request.data
 
+    review, created = Review.objects.get_or_create(
+        owner=user, 
+        project=project,
+    )
+
+    review.value = data['value']
+    review.save() 
+    project.get_vote_count
+    
     serializer = ProjectSerializer(project, many=False)
     return Response(serializer.data)
