@@ -18,3 +18,4 @@ Adding register/login page
 pagination, search bar
 jwt and api
 refactor api
+CORS and building frontend for outside users/aps
