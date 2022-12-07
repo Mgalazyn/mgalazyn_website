@@ -23,6 +23,15 @@ class Project(models.Model):
     class Meta:
         ordering = ['created']
 
+    
+    @property
+    def image_url(self):
+        try:
+            url = self.featured_image.url
+        except:
+            url = ''
+        return url
+
 
     @property
     def reviewers(self):
