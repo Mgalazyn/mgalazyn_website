@@ -34,6 +34,7 @@ ALLOWED_HOSTS = []
 INSTALLED_APPS = [ 
     'rest_framework',
     'corsheaders',
+    'storages',
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -90,12 +91,25 @@ WSGI_APPLICATION = "first_web.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
+
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": 'mg_page', 
+        'USER': 'maleceq',
+        'PASSWORD': 'Maran123!a', 
+        'HOST': 'database-1.czlg5drusxuw.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 
 # Password validation
@@ -164,4 +178,20 @@ REST_FRAMEWORK = {
         'rest_framework_simplejwt.authentication.JWTAuthentication',)
 }
 
+AWS_S3_FILE_OVEERWRITE = False 
+
+AWS_S3_REGION_NAME = "eu-central-1"
+
+AWS_S3_SIGNATURE_VERSION = "s3v4"
+
+AWS_QUERYSTRING_AUTH = False
+
 CORS_ALLOW_ALL_ORIGINS = True 
+
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+
+AWS_ACCESS_KEY_ID = 'AKIARY5DEBIB5K7FGYDM'
+
+AWS_SECRET_ACCESS_KEY = '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'
+
+AWS_STORAGE_BUCKET_NAME = 'mgpage'
