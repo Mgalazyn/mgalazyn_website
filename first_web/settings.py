@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from django.test.runner import DiscoverRunner
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -26,8 +27,12 @@ SECRET_KEY = "django-insecure-kx_i(v=t4x7%s2mzhzz3(%hs9c&+^k3o5lh*y0)q1s-%qi2)sr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['mgalazyn.herokuapp.com/', 'localhost', '127.0.0.1']
+IS_HEROKU = "DYNO" in os.environ
 
+if IS_HEROKU:
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = ['localhost', '127.0.0.1']
 
 # Application definition
 
@@ -199,3 +204,16 @@ AWS_STORAGE_BUCKET_NAME = 'mgpage'
 
 if os.getcwd() == '/app':
     DEBUG = False
+
+
+class HerokuDiscoverRunner(DiscoverRunner):
+    """Test Runner for Heroku CI, which provides a database for you.
+    This requires you to set the TEST database (done for you by settings().)"""
+
+    def setup_databases(self, **kwargs):
+        self.keepdb = True
+        return super(HerokuDiscoverRunner, self).setup_databases(**kwargs)
+
+
+if "CI" in os.environ:
+    TEST_RUNNER = "gettingstarted.settings.HerokuDiscoverRunner"
