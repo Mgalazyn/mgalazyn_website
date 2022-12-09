@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-kx_i(v=t4x7%s2mzhzz3(%hs9c&+^k3o5lh*y0)q1s-%qi2)sr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['mgalazyn.herokuapp.com/', 'localhost', '127.0.0.1']
 
 
 # Application definition
@@ -195,3 +195,7 @@ AWS_ACCESS_KEY_ID = 'AKIARY5DEBIB5K7FGYDM'
 AWS_SECRET_ACCESS_KEY = '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'
 
 AWS_STORAGE_BUCKET_NAME = 'mgpage'
+
+
+if os.getcwd() == '/app':
+    DEBUG = False
