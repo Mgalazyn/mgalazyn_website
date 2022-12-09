@@ -13,7 +13,6 @@ import os
 from pathlib import Path
 # from django.test.runner import DiscoverRunner
 
-
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -40,6 +39,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     'storages',
+    'whitenoise.runserver_nostatic',
 
     "django.contrib.admin",
     "django.contrib.auth",
@@ -116,6 +116,7 @@ DATABASES = {
 #     }
 # }
 
+WHITENOISE_USE_FINDERS = True
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -159,8 +160,8 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-# STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
-
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") 
+STATICFILES_STORAGE='whitenoise.django.GzipManifestStaticFilesStorage'
 
 
 # Default primary key field type
@@ -206,6 +207,8 @@ if os.getcwd() == '/app':
     DEBUG = False
 
 
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 # class HerokuDiscoverRunner(DiscoverRunner):
 #     """Test Runner for Heroku CI, which provides a database for you.
 #     This requires you to set the TEST database (done for you by settings().)"""
