@@ -145,24 +145,24 @@ WSGI_APPLICATION = "first_web.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-# DATABASES = {
-#     "default": {
-#         "ENGINE": "django.db.backends.postgresql",
-#         "NAME": 'mg_page', 
-#         'USER': 'maleceq',
-#         'PASSWORD': 'Maran123!a', 
-#         'HOST': 'database-1.czlg5drusxuw.us-east-1.rds.amazonaws.com',
-#         'PORT': '5432',
-#     }
-# }
-
-
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "ENGINE": "django.db.backends.postgresql",
+        "NAME": 'mg_page', 
+        'USER': 'maleceq',
+        'PASSWORD': 'Maran123!a', 
+        'HOST': 'database-1.czlg5drusxuw.us-east-1.rds.amazonaws.com',
+        'PORT': '5432',
     }
 }
+
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": BASE_DIR / "db.sqlite3",
+#     }
+# }
 
 WHITENOISE_USE_FINDERS = True
 
