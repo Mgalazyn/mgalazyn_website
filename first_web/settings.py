@@ -15,6 +15,7 @@ from pathlib import Path
 from datetime import timedelta 
 import environ
 
+
 env = environ.Env(
     DEBUG=(bool, False)
 )
