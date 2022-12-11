@@ -7,11 +7,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  
-    {% comment %} <!-- Favicon -->
-    <link rel="shortcut icon" href="" type="image/x-icon" />
-    <!-- Icon - IconMonster -->
-    <link rel="stylesheet" href="https://cdn.iconmonstr.com/1.3.0/css/iconmonstr-iconic-font.min.css" /> {% endcomment %}
+
     <!-- Mumble UI -->
     <link rel="stylesheet" href="{% static 'uikit/styles/uikit.css' %}" />
     <!-- Dev Search UI -->
@@ -21,13 +17,6 @@
 </head>
 
 <body>
-    {% comment %} {% if messages %}
-    <ul class="messages">
-        {% for message in messages %}
-        <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-            {% endfor %}
-    </ul>
-    {% endif %} {% endcomment %}
 
     {% if messages %}
     {% for message in messages %}
