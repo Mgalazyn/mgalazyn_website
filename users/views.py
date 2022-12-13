@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 from .models import Profile, Skill, Inbox
 from .forms import CustomUserCreationForm, ProfileForm, SkillForm, MessageForm
 from django.db.models import Q
-from .help_funcs import search_profiles
+from .help_funcs import searchProfiles, paginateProfiles
 from django.core.paginator import EmptyPage, PageNotAnInteger, Paginator
 # Create your views here.
 
@@ -65,23 +65,30 @@ def register_user(request):
 
 
 def profiles(request):
-    profiles, search_query = search_profiles(request)
-    page = request.GET.get('page')
-    results = 6
-    paginator = Paginator(profiles, results)
+    profiles, search_query = searchProfiles(request)
 
-    try:
-        profiles = paginator.page(page)
-    except PageNotAnInteger:
-        page = 1
-        profiles = paginator.page(page)
-    except EmptyPage:
-        page = paginator.num_pages
-        profiles = paginator.page(page)
+    custom_range, profiles = paginateProfiles(request, profiles, 3)
+    context = {'profiles': profiles, 'search_query': search_query,
+               'custom_range': custom_range}
+    return render(request, 'users/profiles.html', context)
+
+    # profiles, search_query = search_profiles(request)
+    # page = request.GET.get('page')
+    # results = 6
+    # paginator = Paginator(profiles, results)
+
+    # try:
+    #     profiles = paginator.page(page)
+    # except PageNotAnInteger:
+    #     page = 1
+    #     profiles = paginator.page(page)
+    # except EmptyPage:
+    #     page = paginator.num_pages
+    #     profiles = paginator.page(page)
 
 
-    contex = {'profiles': profiles, 'search_query': search_query}
-    return render(request, 'users/profiles.html', contex)
+    # contex = {'profiles': profiles, 'search_query': search_query}
+    # return render(request, 'users/profiles.html', contex)
 
 
 def userprofile(request, pk):

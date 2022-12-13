@@ -4,7 +4,7 @@ from .forms import ProjectForm, ReviewForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.db.models import Q
-from .help_funcs import search_project
+from .help_funcs import searchProjects, paginateProjects
 from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 # Create your views here.
 # request handler
@@ -30,22 +30,29 @@ def project(request, pk):
 
 
 def projects(request):
-    projects, search_query = search_project(request)
-    page = request.GET.get('page')
-    results = 6
-    paginator = Paginator(projects, results)
+    projects, search_query = searchProjects(request)
+    custom_range, projects = paginateProjects(request, projects, 6)
 
-    try:
-        projects = paginator.page(page)
-    except PageNotAnInteger:
-        page = 1
-        projects = paginator.page(page)
-    except EmptyPage:
-        page = paginator.num_pages
-        projects = paginator.page(page)
+    context = {'projects': projects,
+               'search_query': search_query, 'custom_range': custom_range}
+    return render(request, 'projects.html', context)
 
-    contex = {'projects': projects, 'search_query': search_query, 'paginator': paginator}
-    return render(request, 'projects.html', contex)
+    # projects, search_query = search_project(request)
+    # page = request.GET.get('page')
+    # results = 6
+    # paginator = Paginator(projects, results)
+
+    # try:
+    #     projects = paginator.page(page)
+    # except PageNotAnInteger:
+    #     page = 1
+    #     projects = paginator.page(page)
+    # except EmptyPage:
+    #     page = paginator.num_pages
+    #     projects = paginator.page(page)
+
+    # contex = {'projects': projects, 'search_query': search_query, 'paginator': paginator}
+    # return render(request, 'projects.html', contex)
 
 
 @login_required(login_url="login")
