@@ -9,13 +9,13 @@ def paginateProfiles(request, profiles, results):
     paginator = Paginator(profiles, results)
 
     try:
-        profiles = paginator.page(int(page))
+        profiles = paginator.page(page)
     except PageNotAnInteger:
         page = 1
-        profiles = paginator.page(int(page))
+        profiles = paginator.page(page)
     except EmptyPage:
         page = paginator.num_pages
-        profiles = paginator.page(int(page))
+        profiles = paginator.page(page)
 
     leftIndex = (int(page) - 4)
 

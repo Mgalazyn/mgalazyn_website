@@ -9,13 +9,13 @@ def paginateProjects(request, projects, results):
     paginator = Paginator(projects, results)
 
     try:
-        projects = paginator.page(int(page))
+        projects = paginator.page(page)
     except PageNotAnInteger:
         page = 1
-        projects = paginator.page(int(page))
+        projects = paginator.page(page)
     except EmptyPage:
         page = paginator.num_pages
-        projects = paginator.page(int(page))
+        projects = paginator.page(page)
 
     leftIndex = (int(page) - 4)
 
