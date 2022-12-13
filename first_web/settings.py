@@ -13,6 +13,7 @@ import os
 from pathlib import Path
 from datetime import timedelta 
 import os.path
+import django_heroku
 
 # from django.test.runner import DiscoverRunner
 # import environ
@@ -208,6 +209,8 @@ CORS_ALLOW_ALL_ORIGINS = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
+STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") 
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 MEDIA_URL = '/images/'
 
@@ -216,7 +219,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") 
+
 
 
 
@@ -256,16 +259,4 @@ if os.getcwd() == '/app':
     DEBUG = False
 
 
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-# class HerokuDiscoverRunner(DiscoverRunner):
-#     """Test Runner for Heroku CI, which provides a database for you.
-#     This requires you to set the TEST database (done for you by settings().)"""
-
-#     def setup_databases(self, **kwargs):
-#         self.keepdb = True
-#         return super(HerokuDiscoverRunner, self).setup_databases(**kwargs)
-
-
-# if "CI" in os.environ:
-#     TEST_RUNNER = "gettingstarted.settings.HerokuDiscoverRunner"
+django_heroku.settings(locals())
