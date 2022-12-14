@@ -206,11 +206,9 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
-EMAIL_HOST_USER = 'mg.pageit@gmail.com' 
-EMAIL_HOST_PASSWORD = 'zjjoulijbkckdadj' 
 
 AWS_S3_FILE_OVEERWRITE = False 
 
@@ -222,17 +220,12 @@ AWS_QUERYSTRING_AUTH = False
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 
-# AWS_SECRET_ACCESS_KEY = os.getenv("AWC_SECRET_ACCES_KEY")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWC_SECRET_ACCES_KEY")
 
-# AWS_STORAGE_BUCKET_NAME = os.getenv("AWC_SECRET_BUCKET_NAME")
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWC_SECRET_BUCKET_NAME")
 
-AWS_ACCESS_KEY_ID='AKIARY5DEBIB5K7FGYDM' 
-
-AWS_SECRET_ACCESS_KEY='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'
-
-AWS_STORAGE_BUCKET_NAME='mgpage'
 
 if os.getcwd() == '/app':
     DEBUG = False
