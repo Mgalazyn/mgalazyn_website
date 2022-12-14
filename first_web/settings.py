@@ -14,9 +14,9 @@ from pathlib import Path
 from datetime import timedelta 
 import os.path
 import django_heroku
-from dotenv import load_dotenv
+# from dotenv import load_dotenv
 
-load_dotenv()
+# load_dotenv()
 
 # env = environ.Env(
 #     DEBUG=(bool, False)
@@ -30,8 +30,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
-
+# SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = "django-insecure-kx_i(v=t4x7%s2mzhzz3(%hs9c&+^k3o5lh*y0)q1s-%qi2)sr" 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -92,18 +92,6 @@ SIMPLE_JWT = {
     'SLIDING_TOKEN_REFRESH_LIFETIME': timedelta(days=1),
 }
 
-# MIDDLEWARE = [
-#     "django.middleware.security.SecurityMiddleware",
-#     "django.contrib.sessions.middleware.SessionMiddleware",
-#     "corsheaders.middleware.CorsMiddleware",
-#     "django.middleware.common.CommonMiddleware",
-#     "django.middleware.csrf.CsrfViewMiddleware",
-#     "django.contrib.auth.middleware.AuthenticationMiddleware",
-#     "django.contrib.messages.middleware.MessageMiddleware",
-#     "django.middleware.clickjacking.XFrameOptionsMiddleware",
-#     "debug_toolbar.middleware.DebugToolbarMiddleware",
-#     "whitenoise.middleware.WhiteNoiseMiddleware",   
-# ]
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -218,9 +206,11 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+# EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
+EMAIL_HOST_USER = 'mg.pageit@gmail.com' 
+EMAIL_HOST_PASSWORD = 'zjjoulijbkckdadj' 
 
 AWS_S3_FILE_OVEERWRITE = False 
 
@@ -232,12 +222,17 @@ AWS_QUERYSTRING_AUTH = False
 
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+# AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 
-AWS_SECRET_ACCESS_KEY = os.getenv("AWC_SECRET_ACCES_KEY")
+# AWS_SECRET_ACCESS_KEY = os.getenv("AWC_SECRET_ACCES_KEY")
 
-AWS_STORAGE_BUCKET_NAME = os.getenv("AWC_SECRET_BUCKET_NAME")
+# AWS_STORAGE_BUCKET_NAME = os.getenv("AWC_SECRET_BUCKET_NAME")
 
+AWS_ACCESS_KEY_ID='AKIARY5DEBIB5K7FGYDM' 
+
+AWS_SECRET_ACCESS_KEY='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'
+
+AWS_STORAGE_BUCKET_NAME='mgpage'
 
 if os.getcwd() == '/app':
     DEBUG = False
