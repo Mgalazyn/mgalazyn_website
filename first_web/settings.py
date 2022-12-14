@@ -153,24 +153,24 @@ WSGI_APPLICATION = "first_web.wsgi.application"
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": 'mg_page', 
-        'USER': 'maleceq',
-        'PASSWORD': 'Maran123!a', 
-        'HOST': 'database-1.czlg5drusxuw.us-east-1.rds.amazonaws.com',
-        'PORT': '5432',
-    }
-}
-
-
 # DATABASES = {
 #     "default": {
-#         "ENGINE": "django.db.backends.sqlite3",
-#         "NAME": BASE_DIR / "db.sqlite3",
+#         "ENGINE": "django.db.backends.postgresql",
+#         "NAME": 'mg_page', 
+#         'USER': 'maleceq',
+#         'PASSWORD': 'Maran123!a', 
+#         'HOST': 'database-1.czlg5drusxuw.us-east-1.rds.amazonaws.com',
+#         'PORT': '5432',
 #     }
 # }
+
+
+DATABASES = {
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
+}
 
 WHITENOISE_USE_FINDERS = True
 
@@ -209,9 +209,6 @@ CORS_ALLOW_ALL_ORIGINS = True
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATIC_ROOT = os.path.join(BASE_DIR, "staticfiles") 
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
 MEDIA_URL = '/images/'
 
 STATICFILES_DIRS = [
@@ -219,7 +216,7 @@ STATICFILES_DIRS = [
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
-
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
 
@@ -238,25 +235,25 @@ EMAIL_HOST_USER = 'mg.pageit@gmail.com'
 EMAIL_HOST_PASSWORD = 'zjjoulijbkckdadj'
 
 
-AWS_S3_FILE_OVEERWRITE = False 
+# AWS_S3_FILE_OVEERWRITE = False 
 
-AWS_S3_REGION_NAME = "eu-central-1"
+# AWS_S3_REGION_NAME = "eu-central-1"
 
-AWS_S3_SIGNATURE_VERSION = "s3v4"
+# AWS_S3_SIGNATURE_VERSION = "s3v4"
 
-AWS_QUERYSTRING_AUTH = False
+# AWS_QUERYSTRING_AUTH = False
 
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-AWS_ACCESS_KEY_ID = 'AKIARY5DEBIB5K7FGYDM'
+# AWS_ACCESS_KEY_ID = 'AKIARY5DEBIB5K7FGYDM'
 
-AWS_SECRET_ACCESS_KEY = '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'
+# AWS_SECRET_ACCESS_KEY = 'jRbg1+CJqQxRiTJnhiFdykEyY03dJ3p2pZzaL+o/'
 
-AWS_STORAGE_BUCKET_NAME = 'mgpage'
+# AWS_STORAGE_BUCKET_NAME = 'mgpage'
 
 
 if os.getcwd() == '/app':
     DEBUG = False
 
 
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
