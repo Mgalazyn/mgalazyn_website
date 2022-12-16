@@ -21,7 +21,7 @@ class Project(models.Model):
         return f"Project {self.title}"
 
     class Meta:
-        ordering = ['created']
+        ordering = ['-created']
 
     
     @property

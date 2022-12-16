@@ -1,12 +1,9 @@
 # mgalazyn.com
 
-My personal website to show off Django, HTML, Django REST Framework, CSS, AWS/PostgreSQL,SQLite, Python skills.
+My personal website to show off Django, HTML, Django REST Framework, CSS, AWS/PostgreSQL, Python skills.
 This page have possibility to look into my projects from github in much more clear way.
 It's possible to log in, register, send messages between the users. Add your own projects 
 which are assigned to you etc. 
-
-FRONTEND SIDE is made by other developer. I was writing only HTML code for templates.
-
 ### Installation
 The instalation for UG2BS_app_v2 requires Python 3.9 or greater.
 
