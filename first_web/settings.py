@@ -13,7 +13,6 @@ import os
 from pathlib import Path
 from datetime import timedelta 
 import os.path
-import django_heroku
 from dotenv import load_dotenv
 
 load_dotenv()
@@ -26,8 +25,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = os.getenv("SECRET_KEY")
-
+# SECRET_KEY = os.getenv("SECRET_KEY")
+SECRET_KEY = "django-insecure-kx_i(v=t4x7%s2mzhzz3(%hs9c&+^k3o5lh*y0)q1s-%qi2)sr" 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -202,9 +201,10 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-
+# EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
+EMAIL_HOST_USER ='mg.pageit@gmail.com' 
+EMAIL_HOST_PASSWORD='zjjoulijbkckdadj' 
 # AWS_S3_FILE_OVEERWRITE = False 
 
 # AWS_S3_REGION_NAME = "eu-central-1"
