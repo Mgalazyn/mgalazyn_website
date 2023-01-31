@@ -85,7 +85,7 @@ def update_project(request, pk):
         newtags = request.POST.get('newtags').replace(',', " ").split()
         form = ProjectForm(request.POST, request.FILES, instance=projectt)
         if form.is_valid():
-            projectt = form.save(commit=False)
+            projectt = form.save()
             for tag in newtags:
                 tag, created = Tag.objects.get_or_create(name=tag)
                 projectt.tags.add(tag)
