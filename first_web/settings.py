@@ -13,9 +13,14 @@ import os
 from pathlib import Path
 from datetime import timedelta 
 import os.path
+import django_heroku
 from dotenv import load_dotenv
 
 load_dotenv()
+
+# env = environ.Env(
+#     DEBUG=(bool, False)
+# )
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,8 +30,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-# SECRET_KEY = os.getenv("SECRET_KEY")
-SECRET_KEY = "django-insecure-kx_i(v=t4x7%s2mzhzz3(%hs9c&+^k3o5lh*y0)q1s-%qi2)sr" 
+SECRET_KEY = os.getenv("SECRET_KEY")
+
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -178,16 +183,17 @@ CORS_ALLOW_ALL_ORIGINS = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_URL = "static/"
-MEDIA_URL = '/images/'
-
-STATICFILES_DIRS = [
-    BASE_DIR / 'static'
-]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/images')
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
+STATIC_URL = "static/"
+MEDIA_URL = '/images/'
+
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static'
+]
 
 
 # Default primary key field type
@@ -201,31 +207,35 @@ EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
-# EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
-EMAIL_HOST_USER ='mg.pageit@gmail.com' 
-EMAIL_HOST_PASSWORD='zjjoulijbkckdadj' 
-# AWS_S3_FILE_OVEERWRITE = False 
+EMAIL_HOST_USER = os.getenv("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = os.getenv("EMAIL_HOST_PASSWORD")
 
-# AWS_S3_REGION_NAME = "eu-central-1"
 
-# AWS_S3_SIGNATURE_VERSION = "s3v4"
+AWS_S3_FILE_OVEERWRITE = False 
 
-# AWS_QUERYSTRING_AUTH = False
+AWS_S3_REGION_NAME = "eu-central-1"
 
-# DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
+AWS_S3_SIGNATURE_VERSION = "s3v4"
 
-# AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
-# AWS_SECRET_ACCESS_KEY = os.getenv("AWC_SECRET_ACCES_KEY")
+AWS_ACCESS_KEY_ID = os.getenv("AWS_ACCESS_KEY_ID")
 
-# AWS_STORAGE_BUCKET_NAME = os.getenv("AWC_SECRET_BUCKET_NAME")
+AWS_SECRET_ACCESS_KEY = os.getenv("AWC_SECRET_ACCES_KEY")
 
-# AWS_ACCESS_KEY_ID=os.getenv('AWS_ACCESS_KEY_ID')
+AWS_STORAGE_BUCKET_NAME = os.getenv("AWC_SECRET_BUCKET_NAME")
 
-# AWS_SECRET_ACCESS_KEY=os.getenv('AWS_SECRET_ACCESS_KEY')
+AWS_DEFAULT_ACL = 'public-read'
 
-# AWS_STORAGE_BUCKET_NAME='mgpage'
+AWS_S3_OBJECT_PARAMETERS = {
+    'CacheControl': 'max-age=86400'
+}
+
+AWS_HEADERS = {
+    'Access-Control-Allow-Origin': '*', 
+}
+
+AWS_QUERYSTRING_AUTH = False
 
 if os.getcwd() == '/app':
     DEBUG = False
